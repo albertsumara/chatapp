@@ -2,6 +2,7 @@ package com.example.chatapp.service;
 
 import com.example.chatapp.model.User;
 import com.example.chatapp.repository.UserRepository;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
 
     public User registerUser(String username, String email, String password) throws Exception {
@@ -43,8 +47,11 @@ public class UserService {
         user.setPassword(password);
         user.setCreatedAt(LocalDateTime.now());
 
-        return userRepository.save(user);
+        User saved = userRepository.save(user);
 
+        amqpTemplate.convertAndSend("user.events", "REGISTERED:" + saved.getUsername());
+
+        return saved;
     }
 
     public User loginUser(String username, String password) throws Exception {
@@ -63,6 +70,7 @@ public class UserService {
 
         user.setLogged(true);
         user.setLastLogin(LocalDateTime.now());
+
 
         return userRepository.save(user);
 
@@ -117,38 +125,26 @@ public class UserService {
                 continue;
 
             }
-
             if (c == '.'){
-
                 if (!sign_detected){
                     throw new Exception("Invalid e-mail format.");
                 }
-
                 if(counter < 2) {
                     throw new Exception("Invalid e-mail format.");
                 }
-
                 dot_detected = true;
                 counter = 0;
                 continue;
-
             }
-
             if (!Character.isLetterOrDigit(c))  {
                 throw new Exception("Invalid e-mail format.");
             }
-
-
         }
-
         if (!dot_detected){
             throw new Exception("Invalid e-mail format.");
         }
-
         if (counter < 2){
             throw new Exception("Invalid e-mail format.");
         }
-
     }
-
 }
