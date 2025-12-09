@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -85,6 +86,10 @@ public class UserService {
         User user = optionalUser.get();
         user.setLogged(false);
         return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return  userRepository.findAll();
     }
 
 

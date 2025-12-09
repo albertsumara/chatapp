@@ -6,11 +6,17 @@
     <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
-
+<div>
+    <h2 class = "title-section-registration">Chat</h2>
+</div>
 <div class = "registration-page-section">
-    <h2 class = "title-section-registration">Select a chat partner</h2>
-    <div class = "picker" id ="chat-picker"></div>
+
+
+    <label for="message"></label><input type="text" id="message" name="message" placeholder="Type a message."/>
+    <button id="submit-message">Send</button>
+
     <button id="logout-button" onclick="location.href='index.html'">logout</button>
+
 
 </div>
 
@@ -21,6 +27,6 @@
 </body>
 </html>
 
+<script src="/js/chat.js"></script>
 <script src="/js/logout.js"></script>
-<script src="/js/chatpicker.js"></script>
 <script src="/js/session-redirect.js"></script>
