@@ -2,7 +2,9 @@ package com.example.chatapp.controller;
 
 import com.example.chatapp.model.User;
 import com.example.chatapp.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +19,18 @@ public class UserRestController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<?> getAllUsersExceptLogged(HttpSession session) {
+
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId == null) {
+            return ResponseEntity.status(401).body("Not logged in");
+        }
+
+        List<User> allUsers = userService.getAllUsers();
+
+        // usuń aktualnie zalogowanego usera
+        allUsers.removeIf(u -> u.getId().equals(userId));
+
+        return ResponseEntity.ok(allUsers);
     }
 }
