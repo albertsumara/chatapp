@@ -28,7 +28,6 @@ public class UserRestController {
 
         List<User> allUsers = userService.getAllUsers();
 
-        // usuń aktualnie zalogowanego usera
         allUsers.removeIf(u -> u.getId().equals(userId));
 
         return ResponseEntity.ok(allUsers);

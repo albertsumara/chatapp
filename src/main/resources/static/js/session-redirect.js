@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     window.location.href = "lobby.html";
                 }
             } else {
-                if (window.location.pathname.includes("lobby.html")) {
+                if ((window.location.pathname.includes("lobby.html")) ||
+                    (window.location.pathname.includes("chat.html")))
+                 {
                     window.location.href = "signin.html";
                 }
             }

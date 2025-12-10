@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return res.json();
       })
       .then(users => {
-          picker.innerHTML = ""; // czyścimy wcześniej listę
+          picker.innerHTML = "";
 
           users.forEach(u => {
               const div = document.createElement('div');
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
               div.style.alignItems = 'center';
               div.style.justifyContent = 'space-between';
               div.style.padding = '5px 10px';
+              div.style.cursor = 'pointer';
 
               const nameSpan = document.createElement('span');
               nameSpan.textContent = u.username;
@@ -30,6 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
               div.appendChild(nameSpan);
               div.appendChild(statusCircle);
               picker.appendChild(div);
+
+              div.addEventListener('click', () => {
+              window.location.href = `chat.html?username=${encodeURIComponent(u.username)}`;
+
+              });
+
           });
       })
       .catch(err => {
