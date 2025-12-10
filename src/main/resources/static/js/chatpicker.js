@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
               picker.appendChild(div);
 
               div.addEventListener('click', () => {
-              window.location.href = `chat.html?username=${encodeURIComponent(u.username)}`;
-
+                  window.location.href = `chat.html?username=${encodeURIComponent(u.username)}&receiverId=${u.id}`;
               });
 
           });

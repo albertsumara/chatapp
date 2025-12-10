@@ -33,7 +33,6 @@ public class MessageController {
 
         if (senderId == null) return ResponseEntity.status(401).build();
 
-
         Message savedMessage = messageService.sendMessage(senderId, dto.getReceiverId(), dto.getContent());
 
         return ResponseEntity.ok(savedMessage);

@@ -1,25 +1,28 @@
-const input = document.getElementById("message");
-const button = document.getElementById("submit-message");
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("message");
+    const button = document.getElementById("submit-message");
 
-button.addEventListener("click", () => {
-    const message = input.value;
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username");
+    const receiverId = params.get("receiverId");
 
-    if (!message) {
-        alert("Wpisz wiadomość!");
-        return;
-    }
 
-    fetch("/api/message", {
-        method: "POST",
-        headers: {
-            "Content-Type": "text/plain"
-        },
-        body: message
-    })
-    .then(response => response.text())
-    .then(result => {
-        console.log("Odpowiedź z serwera:", result);
-        input.value = "";
-    })
-    .catch(error => console.error("Błąd przy wysyłaniu:", error));
+    document.getElementById("chatHeader").textContent = `Chat with ${username}`;
+
+    button.addEventListener("click", () => {
+        const content = input.value.trim();
+        if (!content) return alert("Wpisz wiadomość!");
+
+        fetch("/api/message", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ receiverId: receiverId, content })
+        })
+        .then(res => res.json())
+        .then(savedMessage => {
+            console.log("Wiadomość wysłana:", savedMessage);
+            input.value = "";
+        })
+        .catch(err => console.error("Błąd przy wysyłaniu:", err));
+    });
 });
