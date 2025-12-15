@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatBox = document.getElementById("chat-box");
 
     const params = new URLSearchParams(window.location.search);
+
     const username = params.get("username");
     const receiverId = params.get("receiverId");
 
@@ -21,6 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         const div = document.createElement("div");
                         div.className = "message-tile";
                         div.textContent = `${msg.senderUsername}: ${msg.content}`;
+
+                        if(msg.senderUsername === username) {
+                        div.style.backgroundColor = "rgba(18, 158, 151, 1)"; 
+                        } else {
+                        div.style.backgroundColor = "rgb(0, 80, 90)";
+                        }
+
                         chatBox.appendChild(div);
                     });
                     chatBox.scrollTop = chatBox.scrollHeight;

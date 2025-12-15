@@ -17,7 +17,7 @@ public class WeatherService {
     }
 
     public double getTemperatureByCountry(String country) {
-        
+
         Map<String, Object> geoResponse = webClient.get()
                 .uri("https://geocoding-api.open-meteo.com/v1/search?name={c}&count=1", country)
                 .retrieve()
@@ -29,6 +29,7 @@ public class WeatherService {
         }
 
         List<Map<String,Object>> results = (List<Map<String,Object>>) geoResponse.get("results");
+
         if (results.isEmpty()) {
             throw new IllegalArgumentException("Country not found");
         }
