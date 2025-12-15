@@ -211,3 +211,10 @@ body {
 .picker::-webkit-scrollbar-thumb:hover {
     background: rgb(0, 84, 107);
 }
+
+.message-tile {
+    padding: 8px;
+    margin: 4px;
+    border-radius: 6px;
+    background-color: #f0f0f0;
+}

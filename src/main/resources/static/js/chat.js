@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("message");
     const button = document.getElementById("submit-message");
+    const chatBox = document.getElementById("chat-box");
 
     const params = new URLSearchParams(window.location.search);
     const username = params.get("username");
@@ -8,6 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     document.getElementById("chatHeader").textContent = `Chat with ${username}`;
+
+
+
+    const loadConversation = () => {
+            fetch(`/api/message/conversation?receiverId=${receiverId}`)
+                .then(res => res.json())
+                .then(messages => {
+                    chatBox.innerHTML = "";
+                    messages.forEach(msg => {
+                        const div = document.createElement("div");
+                        div.className = "message-tile";
+                        div.textContent = `${msg.senderUsername}: ${msg.content}`;
+                        chatBox.appendChild(div);
+                    });
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(err => console.error("Błąd przy pobieraniu wiadomości:", err));
+        };
+
+
+     loadConversation();
 
     button.addEventListener("click", () => {
         const content = input.value.trim();

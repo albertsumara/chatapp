@@ -13,16 +13,14 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
     @Query("""
-        SELECT m FROM Message m
-        WHERE (m.senderId = :user1 AND m.receiverId = :user2)
-           OR (m.senderId = :user2 AND m.receiverId = :user1)
-        ORDER BY m.sentAt ASC
-    """)
+    SELECT m FROM Message m
+    WHERE (m.sender.id = :user1 AND m.receiver.id = :user2)
+       OR (m.sender.id = :user2 AND m.receiver.id = :user1)
+    ORDER BY m.sentAt ASC
+""")
     List<Message> findConversation(
-
             @Param("user1") Long user1,
             @Param("user2") Long user2
-
     );
 
 
