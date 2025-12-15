@@ -14,11 +14,13 @@ public class Message {
     @Column(nullable = false)
     private String content;
 
-    @Column(name = "sender_id")
-    private long senderId;
+    @ManyToOne
+    @JoinColumn(name = "sender_id", nullable = false)
+    private User sender;
 
-    @Column(name = "receiver_id")
-    private long receiverId;
+    @ManyToOne
+    @JoinColumn(name = "receiver_id", nullable = false)
+    private User receiver;
 
     @Column(name = "sent_At")
     private LocalDateTime sentAt;
@@ -34,11 +36,11 @@ public class Message {
     public String getContent() {return content;}
     public void setContent(String content) {this.content = content;};
 
-    public Long getSenderId() { return senderId; }
-    public void setSenderId(Long sender) { this.senderId = sender; }
+    public User getSender() { return sender; }
+    public void setSender(User sender) { this.sender = sender; }
 
-    public Long getReceiverId() { return receiverId; }
-    public void setReceiverId(Long receiver) { this.receiverId = receiver; }
+    public User getReceiver() { return receiver; }
+    public void setReceiver(User receiver) { this.receiver = receiver; }
 
     public LocalDateTime getSendTime() { return sentAt; }
     public void setSendTime(LocalDateTime sentAt) { this.sentAt = sentAt; }
