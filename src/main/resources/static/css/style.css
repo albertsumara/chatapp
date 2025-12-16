@@ -222,7 +222,22 @@ body {
 .weather-section {
 
         position: absolute;
-        top: 5vh;
-        left: 70vw;
+        top: 10vh;
+        left: 85vw;
         z-index: 50;
+}
+
+.weather-section select {
+
+    background-color: #00bfff;
+    border-radius: 4px;
+    width: 60%;
+    height: 25px;
+    color: white;
+}
+
+.weather-section select option {
+
+    background-color: rgb(131, 238, 255);
+    color: white;
 }

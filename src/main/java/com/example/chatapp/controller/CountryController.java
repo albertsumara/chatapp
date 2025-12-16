@@ -25,9 +25,9 @@ public class CountryController {
     }
 
     @PostMapping("/select")
-    public ResponseEntity<Void> selectCountry(@RequestBody CountryDto dto, HttpSession session) {
+    public ResponseEntity<Void> selectCountry(@RequestBody Long countryId, HttpSession session) {
 
-        session.setAttribute("countryId", dto.id());
+        session.setAttribute("countryId", countryId);
 
         return ResponseEntity.ok().build();
     }
