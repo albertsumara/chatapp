@@ -217,3 +217,12 @@ body {
     margin: 4px;
     border-radius: 6px;
 }
+
+
+.weather-section {
+
+        position: absolute;
+        top: 5vh;
+        left: 70vw;
+        z-index: 50;
+}

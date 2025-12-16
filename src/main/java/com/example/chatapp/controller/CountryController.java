@@ -2,9 +2,9 @@ package com.example.chatapp.controller;
 
 import com.example.chatapp.dto.CountryDto;
 import com.example.chatapp.service.CountryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +24,27 @@ public class CountryController {
         return countryService.getAllDtoCountries();
     }
 
+    @PostMapping("/select")
+    public ResponseEntity<Void> selectCountry(@RequestBody CountryDto dto, HttpSession session) {
+
+        session.setAttribute("countryId", dto.id());
+
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/selected")
+    public ResponseEntity<CountryDto> getSelectedCountry(HttpSession session) {
+
+        Long id = (Long) session.getAttribute("countryId");
+
+        if( id == null ){
+            return ResponseEntity.status(404).build();
+        }
+
+        CountryDto dto = countryService.getCountryById(id);
+        return ResponseEntity.ok(dto);
+
+
+    }
 
 }
