@@ -38,7 +38,7 @@ public class CountryController {
         Long id = (Long) session.getAttribute("countryId");
 
         if( id == null ){
-            return ResponseEntity.status(404).build();
+            id = 141L;
         }
 
         CountryDto dto = countryService.getCountryById(id);

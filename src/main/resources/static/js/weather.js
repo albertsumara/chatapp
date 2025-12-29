@@ -3,45 +3,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const temperatureSpan = document.getElementById("temperature");
     const flagImg = document.getElementById("country-flag");
 
-    const setDefaultCountry = () => {
-        const defaultCountryId = 141; // Poland
-        fetch(`/api/countries/selected`)
-            .then(res => {
-                if (!res.ok) return null;
-                return res.json();
-            })
-            .then(selectedCountry => {
-                if (selectedCountry) {
-                    select.value = selectedCountry.id;
-                    getTemperature(selectedCountry.country);
-                    updateFlag(selectedCountry);
-                } else {
-                select.value = defaultCountryId;
-                const selectedOption = select.options[select.selectedIndex];
-                if (selectedOption) getTemperature(selectedOption.textContent);
-                }
+   const setCountry = () => {
+        console.log("setCountry");
+        fetch(`/api/countries/selected`, {method: "GET"})
+           .then(res => {
+            //    if (!res.ok) return null;
+            return res.json();
+               
 
-                const defaultCountry = countries.find(c => c.id === defaultCountryId);
-                if(defaultCountry) updateFlag(defaultCountry);
+           })
+           .then(selectedCountry => {
+                select.value = selectedCountry.id;
+                getTemperature(selectedCountry.country);
+                updateFlag(selectedCountry);
+            //    else {
+            //    select.value = defaultCountryId;
+            //    const selectedOption = select.options[select.selectedIndex];
+            //    }
+            //    if (selectedOption) getTemperature(selectedOption.textContent);
+               
 
-            })
-            .catch(err => console.error(err));
-    };
+            //    const defaultCountry = countries.find(c => c.id === defaultCountryId);
+            //    if(defaultCountry) updateFlag(defaultCountry);
+
+           })
+           .catch(err => console.error(err));
+   };
 
     const listCountries = () => {
         fetch(`/api/countries`)
             .then(res => res.json())
             .then(countries => {
+                console.log(countries);
                 countries.sort((a,b) => a.country.localeCompare(b.country));
+
+
+                setCountry();
 
                 countries.forEach(country => {
                     const option = document.createElement("option");
                     option.value = country.id;
                     option.textContent = country.country;
                     select.appendChild(option);
+
                 });
 
-                setDefaultCountry();
 
             })
             .catch(err => console.error("Error:", err));
@@ -70,26 +76,24 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(Number(select.value))
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("API response", data);
-            getTemperature(countryName);
-            location.reload();
+        .then(() => {
+            // getTemperature(countryName);
+            //location.reload();
+            setCountry();
+
         })
         .catch(err => console.error(err));
-        location.reload();
+        //location.reload();
+
     });
 
 
     const updateFlag = (country) => {
     if(flagImg && country.img) {
         flagImg.src = country.img;
-        alert(country.img);
         }
     };
 
-
-
-
     listCountries();
+
 });
