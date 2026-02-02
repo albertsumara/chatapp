@@ -7,7 +7,7 @@ It is a simple web chat application that allows users to exchange messages in re
 ### Technologies
 - **Java**
 - **Spring Boot**
-- **SQL Server (SSMS)**
+- **PostgreSQL (running in Docker)**
 - **REST API**
 
 ### How it works
@@ -24,15 +24,17 @@ It is a simple web chat application that allows users to exchange messages in re
 - Both APIs are integrated so users can quickly see weather for a selected country.
 
 **Database**
-- All user and message data is stored in a **SQL Server** relational database,
-- Database managed using **SQL Server Management Studio (SSMS)**.
+- All user and message data is stored in a **PostgreSQL** relational database running in Docker.
 
 ### Project Goal
 The goal was to practice:
 - Web application development with Spring Boot backend,
 - User authentication and session management in the browser,
 - Integration with external APIs (weather + countries),
-- Working with relational databases in SQL Server.
+- Working with relational databases in PostgreSQL.
+
+### Project Preview
+You can try the application live here: [ChatApp Preview](https://chatapp-hydy.onrender.com)
 
 ### Project Status
 Completed as part of coursework, no longer under active development.
@@ -46,7 +48,7 @@ Jest to prosta aplikacja webowa typu chat, pozwalająca użytkownikom na wymian�
 ### Technologie
 - **Java**
 - **Spring Boot**
-- **SQL Server (SSMS)**
+- **PostgreSQL (uruchomiony w Dockerze)**
 - **REST API**
 
 ### Jak działa aplikacja
@@ -63,15 +65,17 @@ Jest to prosta aplikacja webowa typu chat, pozwalająca użytkownikom na wymian�
 - oba API są spięte w jedno, dzięki czemu użytkownik może szybko zobaczyć pogodę dla wybranego kraju.
 
 **Baza danych**
-- wszystkie dane użytkowników i wiadomości są przechowywane w relacyjnej bazie danych **SQL Server**,
-- baza zarządzana przy użyciu **SQL Server Management Studio (SSMS)**.
+- wszystkie dane użytkowników i wiadomości są przechowywane w relacyjnej bazie danych **PostgreSQL** działającej w Dockerze.
 
 ### Cel projektu
 Celem było praktyczne połączenie:
 - aplikacji webowej z backendem w Spring Boot,
 - logowania i sesji użytkownika w przeglądarce,
 - integracji z zewnętrznymi API (pogoda + lista krajów),
-- pracy z relacyjną bazą danych w SQL Server.
+- pracy z relacyjną bazą danych w PostgreSQL.
+
+### Podgląd projektu
+Możesz zobaczyć aplikację online tutaj: [ChatApp Preview](https://chatapp-hydy.onrender.com)
 
 ### Status projektu
 Projekt zakończony w ramach zajęć, nie jest obecnie rozwijany.
