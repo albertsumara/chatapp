@@ -16,8 +16,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private AmqpTemplate amqpTemplate;
+//    @Autowired
+//    private AmqpTemplate amqpTemplate;
 
 
     public User registerUser(String username, String email, String password) throws Exception {
@@ -50,7 +50,7 @@ public class UserService {
 
         User saved = userRepository.save(user);
 
-        amqpTemplate.convertAndSend("user.events", "REGISTERED:" + saved.getUsername());
+//        amqpTemplate.convertAndSend("user.events", "REGISTERED:" + saved.getUsername());
 
         return saved;
     }
