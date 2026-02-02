@@ -12,9 +12,9 @@ services:
     #      - ./src/main/resources/static:/app/static
     environment:
       # PostgreSQL
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/chatapp
-      SPRING_DATASOURCE_USERNAME: chatuser
-      SPRING_DATASOURCE_PASSWORD: chatpass
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/chatapp_kszh
+      SPRING_DATASOURCE_USERNAME: chatapp_kszh_user
+      SPRING_DATASOURCE_PASSWORD: 4ffQGw3dq6vbwmPIIC3nr5Pah6NotIfS
     depends_on:
       - db
 
@@ -22,9 +22,9 @@ services:
     image: postgres:15
     container_name: chatapp_db
     environment:
-      POSTGRES_DB: chatapp
-      POSTGRES_USER: chatuser
-      POSTGRES_PASSWORD: chatpass
+      POSTGRES_DB: chatapp_kszh
+      POSTGRES_USER: chatapp_kszh_user
+      POSTGRES_PASSWORD: 4ffQGw3dq6vbwmPIIC3nr5Pah6NotIfS
     ports:
       - "5432:5432"
     volumes:
