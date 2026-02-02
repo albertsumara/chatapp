@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(savedMessage => {
             console.log("Wiadomość wysłana:", savedMessage);
             input.value = "";
+             loadConversation();
         })
         .catch(err => console.error("Błąd przy wysyłaniu:", err));
     });
