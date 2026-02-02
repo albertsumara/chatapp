@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
            })
            .then(selectedCountry => {
+//                console.log("Selected country from API:", selectedCountry);
                 select.value = selectedCountry.id;
+//                console.log("Setting select.value to id:", selectedCountry.id);
                 getTemperature(selectedCountry.country);
                 updateFlag(selectedCountry);
             //    else {

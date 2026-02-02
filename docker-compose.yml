@@ -1,12 +1,50 @@
 version: '3.8'
 
 services:
+  chatapp:
+    build: .
+    image: chatapp:latest
+    container_name: chatapp
+    ports:
+      - "8080:8080"
+#    volumes:
+#      - ./target/classes:/app/classes
+#      - ./src/main/resources/static:/app/static
+    environment:
+      # PostgreSQL
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/chatapp
+      SPRING_DATASOURCE_USERNAME: chatuser
+      SPRING_DATASOURCE_PASSWORD: chatpass
+      # RabbitMQ
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    depends_on:
+      - db
+      - rabbitmq
+
+  db:
+    image: postgres:15
+    container_name: chatapp_db
+    environment:
+      POSTGRES_DB: chatapp
+      POSTGRES_USER: chatuser
+      POSTGRES_PASSWORD: chatpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    container_name: chatapp_rabbit
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+
+volumes:
+  db_data:

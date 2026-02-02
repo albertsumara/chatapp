@@ -38,7 +38,7 @@ public class CountryController {
         Long id = (Long) session.getAttribute("countryId");
 
         if( id == null ){
-            id = 141L;
+            id = 32L;
         }
 
         CountryDto dto = countryService.getCountryById(id);
