@@ -1,7 +1,6 @@
 package com.example.chatapp.service;
 
 
-import com.example.chatapp.config.RabbitConfig;
 import com.example.chatapp.dto.MessageDto;
 import com.example.chatapp.model.Message;
 import com.example.chatapp.model.User;
@@ -56,7 +55,7 @@ public class MessageService {
                 message.getSendTime()
         );
 
-        rabbitTemplate.convertAndSend(RabbitConfig.USER_EVENTS_QUEUE, payload);
+//        rabbitTemplate.convertAndSend(RabbitConfig.USER_EVENTS_QUEUE, payload);
 
         return savedMessage;
     }
