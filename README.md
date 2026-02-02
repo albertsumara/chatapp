@@ -4,6 +4,15 @@
 
 It is a simple web chat application that allows users to exchange messages in real-time, with additional weather and country info features.
 
+### Project Preview
+You can try the application live here: [ChatApp Preview](https://chatapp-hydy.onrender.com)
+
+<div align="center">
+
+![Appview](assets/appview.gif)
+
+</div>
+
 ### Technologies
 - **Java**
 - **Spring Boot**
@@ -33,8 +42,6 @@ The goal was to practice:
 - Integration with external APIs (weather + countries),
 - Working with relational databases in PostgreSQL.
 
-### Project Preview
-You can try the application live here: [ChatApp Preview](https://chatapp-hydy.onrender.com)
 
 ### Project Status
 Completed as part of coursework, no longer under active development.
@@ -44,6 +51,9 @@ Completed as part of coursework, no longer under active development.
 ## [PL] ChatApp – Internetowy komunikator
 
 Jest to prosta aplikacja webowa typu chat, pozwalająca użytkownikom na wymianę wiadomości w czasie rzeczywistym, z dodatkowymi funkcjonalnościami pogodowymi i informacyjnymi.
+
+### Podgląd projektu
+Możesz zobaczyć aplikację online tutaj: [ChatApp Preview](https://chatapp-hydy.onrender.com)
 
 ### Technologie
 - **Java**
@@ -74,8 +84,6 @@ Celem było praktyczne połączenie:
 - integracji z zewnętrznymi API (pogoda + lista krajów),
 - pracy z relacyjną bazą danych w PostgreSQL.
 
-### Podgląd projektu
-Możesz zobaczyć aplikację online tutaj: [ChatApp Preview](https://chatapp-hydy.onrender.com)
 
 ### Status projektu
 Projekt zakończony w ramach zajęć, nie jest obecnie rozwijany.
